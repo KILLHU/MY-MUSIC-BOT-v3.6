@@ -10,7 +10,7 @@ if(botChannel){
 if(botChannel.id == oldState.channelId)
 if(botChannel?.members?.find(x => x == client?.user?.id)){
 if(botChannel?.members?.size == 1){
-await queue?.textChannel?.send({ content: `🔴 Users left channel!!` }).catch(e => { })
+await queue?.textChannel?.send({ content: `🔴ผู้ใช้ออกจากช่อง!!` }).catch(e => { })
 if(queue || queue?.playing){
 return queue?.stop(oldState.guild.id)
 }
@@ -30,7 +30,7 @@ await queue?.pause()
 } catch(e){
 return 
 }
-await queue?.textChannel?.send({ content: `🔴 Muted` }).catch(e => { })
+await queue?.textChannel?.send({ content: `🔴ปิดเสียง` }).catch(e => { })
 }
 }
 if(oldState.serverMute === true && newState.serverMute === false){
