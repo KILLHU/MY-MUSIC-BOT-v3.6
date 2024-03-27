@@ -1,7 +1,7 @@
 const db = require("../mongoDB");
 module.exports = {
   name: "filter",
-  description: "เพิ่มฟิลเตอร์เสียงให้กับเพลงที่กำลังเล่นอยู่.",
+  description: "Adds audio filter to ongoing music.",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -9,7 +9,7 @@ module.exports = {
     try {
       const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
       const queue = client?.player?.getQueue(interaction?.guild?.id);
-      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
+      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
 
       let buttons = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -48,7 +48,7 @@ module.exports = {
         .setCustomId('karaoke')
         .setStyle(ButtonStyle.Secondary)
       )
-      
+
 
       let embed = new EmbedBuilder()
       .setColor('#01fe66')
@@ -58,7 +58,7 @@ module.exports = {
           url: 'https://discord.gg/FUEHs7RCqz'
         })
       .setDescription('** Explore the Beat, Choose Your Sound Magic Below!**')
-  
+
     interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
       const filter = i => i.user.id === interaction?.user?.id
@@ -71,9 +71,9 @@ module.exports = {
 if(!filters?.includes(button?.customId)) return
 
       let filtre = button.customId
-      if (!filtre) return interaction?.editReply({ content: '❌ชื่อไม่ถูกต้อง', ephemeral: true }).catch(e => { })
+      if (!filtre) return interaction?.editReply({ content: '❌ Invalid Name', ephemeral: true }).catch(e => { })
      filtre = filtre?.toLowerCase()
-   
+
       if (filters?.includes(filtre?.toLowerCase())) {
         if (queue?.filters?.has(filtre)) {
           queue?.filters?.remove(filtre)
@@ -86,7 +86,7 @@ if(!filters?.includes(button?.customId)) return
         }
       } else {
         const filter = filters?.find((x) => x?.toLowerCase() === filtre?.toLowerCase())
-        embed?.setDescription(`❌ไม่พบฟิลเตอร์!!`.replace("{filters}", filters?.map(mr => `\`${mr}\``).join(", ")))
+        embed?.setDescription(`❌ Couldn't find filter!!`.replace("{filters}", filters?.map(mr => `\`${mr}\``).join(", ")))
         if (!filter) return interaction?.editReply({ embeds: [embed] }).catch(e => { })
       }
     })
