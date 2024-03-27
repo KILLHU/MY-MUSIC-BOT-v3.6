@@ -55,23 +55,9 @@ module.exports = {
           { name: '⏱️ Time', value: 'แสดงเวลาเล่นเพลงปัจจุบัน' },
           { name: '🎧 Filter', value: 'ใช้ฟิลเตอร์เพื่อเพิ่มคุณภาพเสียงตามที่คุณต้องการ' },
            { name: '🎵 Now Playing', value: 'แสดงข้อมูลเพลงที่กำลังเล่นอยู่' },
-          { name: '🔊 Volume', value: 'ปรับระดับเสียงเพลง [ การได้ยินที่ระดับเสียงสูงมีความเสี่ยง ]' },
+          { name: '🔊 Volume', value: 'ปรับระดับเสียงเพลง [ การได้ยินที่ระดับเสียงสูงมีความเสี่ยง ]' }
         ) 
-        .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=654f37ba&is=653cc2ba&hm=648a2e070fab36155f4171962e9c3bcef94857aca3987a181634837231500177&`)
-
-const button1 = new ButtonBuilder() .setLabel('YouTube')
-
-.setURL('https://www.youtube.com/ channel/UCPbAvYWBgnYhliJa1BIrv0A') .setStyle(ButtonStyle. Link);
-
-const button2 = new ButtonBuilder() .setLabel('Discord')
-
-.setURL('https://discord.gg/ FUEHs7RCqz')
-
-.setStyle(ButtonStyle.Link);
-
-const button3 = new ButtonBuilder() .setLabel('Code')
-
-.setURL('https://github.com/ RTX-GAMINGG/RTX-MUSIC-BOT-v3.6') .setStyle(ButtonStyle. Link);
+        .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=654f37ba&is=653cc2ba&hm=648a2e070fab36155f4171962e9c3bcef94857aca3987a181634837231500177&`);
 
 const row = new ActionRowBuilder() .addComponents (button1, button2, button3);
 
