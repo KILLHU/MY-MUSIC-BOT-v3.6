@@ -134,7 +134,7 @@ module.exports = {
       if (stp === "normal") {
   const name = interaction.options.getString('name');
   if (!name) {
-    return interaction.reply({ content: '▶️ ให้ข้อความหรือลิงก์' ชั่วคราว: true }).catch(e => {});
+    return interaction.reply({ content: '▶️ ให้ข้อความหรือลิงก์' ephemeral: true }).catch(e => {});
   }
 
   const embed = new EmbedBuilder()
