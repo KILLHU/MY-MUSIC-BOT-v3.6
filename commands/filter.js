@@ -1,7 +1,7 @@
 const db = require("../mongoDB");
 module.exports = {
   name: "filter",
-  description: "Adds audio filter to ongoing music.",
+  description: "เพิ่มฟิลเตอร์เสียงให้กับเพลงที่กำลังเล่นอยู่",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -9,7 +9,7 @@ module.exports = {
     try {
       const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
       const queue = client?.player?.getQueue(interaction?.guild?.id);
-      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
+      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
 
       let buttons = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
