@@ -116,4 +116,3 @@ module.exports = {
     }
   },
 };
-module.exports.selectedThumbnailURL = selectedThumbnailURL;
