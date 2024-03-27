@@ -7,18 +7,18 @@ module.exports = {
   options: [
     {
       name: "create",
-      description: "สร้างอัลบั้ม",
+      description: "Create an Album.",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "name",
-          description: "ตั้งชื่ออัลบั้มของคุณ",
+          description: "Give a name for your Album",
           type: ApplicationCommandOptionType.String,
           required: true
         },
         {
           name: "public",
-          description: "ต้องการทำให้เป็นสาธารณะหรือไม่? True 0r false",
+          description: "Want to make it Public ? True 0r false",
           type: ApplicationCommandOptionType.Boolean,
           required: true
         }
@@ -26,12 +26,12 @@ module.exports = {
     },
     {
       name: "delete",
-      description: "ต้องการลบอัลบั้มของคุณ?",
+      description: "Want to remove your Album ?",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "name",
-          description: "เขียนชื่ออัลบั้มของคุณที่จะลบ",
+          description: "Write the name of your Album to delete.",
           type: ApplicationCommandOptionType.String,
           required: true
         }
@@ -39,18 +39,18 @@ module.exports = {
     },
     {
       name: "add-music",
-      description: "ช่วยให้คุณสามารถเพิ่มเพลงลงในอัลบั้มได้",
+      description: "It allows you to add songs to the Album.",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "playlist-name",
-          description: "เขียนชื่ออัลบั้ม",
+          description: "Write an Album name.",
           type: ApplicationCommandOptionType.String,
           required: true
         },
         {
           name: "name",
-          description: "เขียนชื่อเพลงหรือลิงค์เพลง",
+          description: "Write a song name or a song link.",
           type: ApplicationCommandOptionType.String,
           required: true
         }
@@ -58,18 +58,18 @@ module.exports = {
     },
     {
       name: "delete-music",
-      description: "ช่วยให้คุณสามารถลบเพลงออกจากอัลบั้มได้",
+      description: "It allows you to delete song from Album.",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "playlist-name",
-          description: "เขียนชื่ออัลบั้ม",
+          description: "Write an Album name.",
           type: ApplicationCommandOptionType.String,
           required: true
         },
         {
           name: "name",
-          description: "เขียนชื่อเพลง",
+          description: "Write a song name.",
           type: ApplicationCommandOptionType.String,
           required: true
         }
@@ -77,12 +77,12 @@ module.exports = {
     },
     {
       name: "list",
-      description: "เรียกดูเพลงในอัลบั้ม",
+      description: "Browse songs in an Album.",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "name",
-          description: "เขียนชื่ออัลบั้ม",
+          description: "Write an Album name.",
           type: ApplicationCommandOptionType.String,
           required: true
         }
@@ -90,13 +90,13 @@ module.exports = {
     },
     {
       name: "lists",
-      description: "เรียกดูอัลบั้มทั้งหมดของคุณ",
+      description: "Browse all your Albums.",
       type: ApplicationCommandOptionType.Subcommand,
       options: []
     },
     {
       name: "top",
-      description: "อัลบั้มยอดนิยม",
+      description: "Most popular Albums.",
       type: ApplicationCommandOptionType.Subcommand,
       options: []
     }
@@ -108,7 +108,7 @@ module.exports = {
       if (stp === "create") {
         let name = interaction.options.getString('name')
         let public = interaction.options.getBoolean('public')
-        if (!name) return interaction.reply({ content: '⚠️กรอกชื่ออัลบั้มเพื่อสร้าง!', ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: '⚠️ Enter Album name to create!', ephemeral: true }).catch(e => { })
 
         const userplaylist = await db.playlist.findOne({ userID: interaction.user.id })
 
@@ -116,12 +116,12 @@ module.exports = {
         if (playlist?.length > 0) {
           for (let i = 0; i < playlist.length; i++) {
             if (playlist[i]?.playlist?.filter(p => p.name === name)?.length > 0) {
-              return interaction.reply({ content: '⚠️อัลบั้มออกแล้ว', ephemeral: true }).catch(e => { })
+              return interaction.reply({ content: '⚠️ Album already Exitst!', ephemeral: true }).catch(e => { })
             }
           }
         }
 
-        if (userplaylist?.playlist?.length >= client.config.playlistSettings.maxPlaylist) return interaction.reply({ content: '🚫เกินขีดจำกัดของอัลบั้ม', ephemeral: true }).catch(e => { })
+        if (userplaylist?.playlist?.length >= client.config.playlistSettings.maxPlaylist) return interaction.reply({ content: '🚫 Exceeded Album limit', ephemeral: true }).catch(e => { })
 
         const creatingAlbumEmbed = new EmbedBuilder()
           .setColor('#0099ff')
@@ -157,7 +157,7 @@ module.exports = {
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, สร้างอัลบั้มของคุณสำเร็จแล้ว🎉`)
+  .setDescription(`Hey <@${interaction.member.id}>, your album has been created successfully! 🎉`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
@@ -171,10 +171,10 @@ await interaction.editReply({
 
       if (stp === "delete") {
         let name = interaction.options.getString('name')
-        if (!name) return interaction.reply({ content: '⚠️กรอกชื่ออัลบั้มที่จะสร้าง!', ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: '⚠️ Enter album name to create!', ephemeral: true }).catch(e => { })
 
         const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
-        if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: '❌ไม่พบอัลบั้ม', ephemeral: true }).catch(e => { })
+        if (!playlist?.playlist?.filter(p => p.name === name).length > 0) return interaction.reply({ content: '❌ No album Found', ephemeral: true }).catch(e => { })
 
         const music_filter = playlist?.musics?.filter(m => m.playlist_name === name)
         if (music_filter?.length > 0){
@@ -190,7 +190,7 @@ await interaction.editReply({
        const deletingAlbumEmbed = new EmbedBuilder()
           .setColor('#0099ff')
           .setTitle('Deleting Album')
-          .setDescription(`Hey <@${interaction.member.id}>, อัลบั้มของคุณกำลังถูกลบ 🎸`)
+          .setDescription(`Hey <@${interaction.member.id}>, your album is being Deleted 🎸`)
           .setTimestamp();
 
         // Replying with both content and embed
@@ -216,7 +216,7 @@ await interaction.editReply({
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, อัลบั้มของคุณถูกลบเรียบร้อยแล้ว! ✨`)
+  .setDescription(`Hey <@${interaction.member.id}>, your album has been Deleted successfully! ✨`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
@@ -230,9 +230,9 @@ await interaction.editReply({
 
       if (stp === "add-music") {
         let name = interaction.options.getString('name')
-        if (!name) return interaction.reply({ content: '⚠️กรอกชื่อเพลงเพื่อค้นหา', ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: '⚠️ Enter song name to search', ephemeral: true }).catch(e => { })
         let playlist_name = interaction.options.getString('playlist-name')
-        if (!playlist_name) return interaction.reply({ content: '⚠️ป้อนชื่ออัลบั้มเพื่อเพิ่มเพลง', ephemeral: true }).catch(e => { })
+        if (!playlist_name) return interaction.reply({ content: '⚠️ Enter album name to add songs', ephemeral: true }).catch(e => { })
 
         const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
         if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: 'Your Song Added!', ephemeral: true }).catch(e => { })
@@ -247,9 +247,9 @@ await interaction.editReply({
             interaction
           })
         } catch (e) {
-          return interaction.reply({ content: 'ไม่สามารถค้นหาได้ ❌', ephemeral: true }).catch(e => { })
+          return interaction.reply({ content: 'Cannot Find ❌', ephemeral: true }).catch(e => { })
         }
-        if (!res || !res.length || !res.length > 1) return interaction.reply({ content: `ไม่สามารถค้นหาได้ ❌ `, ephemeral: true }).catch(e => { })
+        if (!res || !res.length || !res.length > 1) return interaction.reply({ content: `Cannot Find ❌ `, ephemeral: true }).catch(e => { })
         const loadingembed = new EmbedBuilder()
         .setColor('#0099ff')
        .setAuthor({
@@ -267,7 +267,7 @@ await interaction.editReply({
 });
 
         const music_filter = playlist?.musics?.filter(m => m.playlist_name === playlist_name && m.music_name === res[0]?.name)
-        if (music_filter?.length > 0) return interaction.editReply({ content: ' ❌ เพลงอยู่ในอัลบั้มแล้ว', ephemeral: true }).catch(e => { })
+        if (music_filter?.length > 0) return interaction.editReply({ content: ' ❌ Song already in Album', ephemeral: true }).catch(e => { })
 
         await db.playlist.updateOne({ userID: interaction.user.id }, {
           $push: {
@@ -286,15 +286,15 @@ await interaction.editReply({
 
       if (stp === "delete-music") {
         let name = interaction.options.getString('name')
-        if (!name) return interaction.reply({ content: '⚠️ป้อนชื่อเพลงเพื่อค้นหา!', ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: '⚠️ Enter Song Name to Search!', ephemeral: true }).catch(e => { })
         let playlist_name = interaction.options.getString('playlist-name')
-        if (!playlist_name) return interaction.reply({ content: '⚠️ป้อนชื่ออัลบั้มเพื่อลบเพลง!', ephemeral: true }).catch(e => { })
+        if (!playlist_name) return interaction.reply({ content: '⚠️ Enter name of the album to remove song!', ephemeral: true }).catch(e => { })
 
         const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
-        if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: '❌ไม่พบอัลบั้ม!', ephemeral: true }).catch(e => { })
+        if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: '❌ No album Found!', ephemeral: true }).catch(e => { })
 
         const music_filter = playlist?.musics?.filter(m => m.playlist_name === playlist_name && m.music_name === name)
-        if (!music_filter?.length > 0) return interaction.reply({ content: `❌ไม่พบเพลง!`, ephemeral: true }).catch(e => { })
+        if (!music_filter?.length > 0) return interaction.reply({ content: `❌ No Song found!`, ephemeral: true }).catch(e => { })
 
          const deletingSongEmbed = new EmbedBuilder()
           .setColor('#0099ff')
@@ -326,7 +326,7 @@ await interaction.editReply({
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, เพลงของคุณถูกลบเรียบร้อยแล้ว! ✨`)
+  .setDescription(`Hey <@${interaction.member.id}>, your song has been Removed successfully! ✨`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
@@ -340,12 +340,12 @@ await interaction.editReply({
 
       if (stp === "list") {
         let name = interaction.options.getString('name')
-        if (!name) return interaction.reply({ content: '⚠️ป้อนชื่ออัลบั้มเพื่อค้นหา!', ephemeral: true }).catch(e => { })
+        if (!name) return interaction.reply({ content: '⚠️ Enter Album name to find it!', ephemeral: true }).catch(e => { })
 
         let trackl
 
         const playlist = await db.playlist.find().catch(e => { })
-        if (!playlist?.length > 0) return interaction.reply({ content: `🚫ไม่มีชื่ออัลบั้ม!`, ephemeral: true }).catch(e => { })
+        if (!playlist?.length > 0) return interaction.reply({ content: `🚫 No Album name!`, ephemeral: true }).catch(e => { })
 
         let arr = 0
         for (let i = 0; i < playlist.length; i++) {
@@ -356,17 +356,17 @@ await interaction.editReply({
 
             if (playlist_owner_filter !== interaction.member.id) {
               if (playlist_public_filter === false) {
-                return interaction.reply({ content: '🚫คุณไม่สามารถเล่นอัลบั้มนี้ได้!', ephemeral: true }).catch(e => { })
+                return interaction.reply({ content: '🚫 You cannot play this Album!', ephemeral: true }).catch(e => { })
               }
             }
 
             trackl = await playlist[i]?.musics?.filter(m => m.playlist_name === name)
-            if (!trackl?.length > 0) return interaction.reply({ content: '❌อัลบั้มนี้ว่างเปล่า เพิ่มเพลงลงไปได้เลย!', ephemeral: true }).catch(e => { })
+            if (!trackl?.length > 0) return interaction.reply({ content: '❌ This album is Empty, add any songs to it!', ephemeral: true }).catch(e => { })
 
           } else {
             arr++
             if (arr === playlist.length) {
-              return interaction.reply({ content: '❌ไม่พบอัลบั้ม', ephemeral: true }).catch(e => { })
+              return interaction.reply({ content: '❌ No album Found', ephemeral: true }).catch(e => { })
             }
           }
         }
@@ -399,7 +399,7 @@ await interaction.editReply({
         const generateEmbed = async (start) => {
           let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1
           const current = trackl.slice(start, start + kaçtane)
-          if (!current || !current?.length > 0) return interaction.reply({ content: '❌อัลบั้มของคุณว่างเปล่า, เพิ่มเพลงลงไป!', ephemeral: true }).catch(e => { })
+          if (!current || !current?.length > 0) return interaction.reply({ content: '❌ Your album is Empty, add any songs to it!', ephemeral: true }).catch(e => { })
           return new EmbedBuilder()
            .setAuthor({
           name: 'Album Songs',
@@ -431,7 +431,7 @@ await interaction.editReply({
           collector.on("collect", async (button) => {
             if (button.customId === "close") {
               collector.stop()
-              return button.reply({ content: `คำสั่งถูกยกเลิก ❌`, ephemeral: true }).catch(e => { })
+              return button.reply({ content: `Command Cancelled ❌`, ephemeral: true }).catch(e => { })
             } else {
 
               if (button.customId === backId) {
@@ -494,7 +494,7 @@ await interaction.editReply({
 
       if (stp === "lists") {
         const playlist = await db?.playlist?.findOne({ userID: interaction.user.id }).catch(e => { })
-        if (!playlist?.playlist?.length > 0) return interaction.reply({ content: `⚠️ คุณยังไม่ได้สร้างอัลบั้ม`, ephemeral: true }).catch(e => { })
+        if (!playlist?.playlist?.length > 0) return interaction.reply({ content: `⚠️ You haven't created a Album`, ephemeral: true }).catch(e => { })
 
         let number = 1
         const embed = new EmbedBuilder()
@@ -514,7 +514,7 @@ await interaction.editReply({
 
       if (stp === "top") {
         let playlists = await db?.playlist?.find().catch(e => { })
-        if (!playlists?.length > 0) return interaction.reply({ content: 'ไม่มีเพลย์ลิสต์ ❌', ephemeral: true }).catch(e => { })
+        if (!playlists?.length > 0) return interaction.reply({ content: 'There are no playlists ❌', ephemeral: true }).catch(e => { })
 
         let trackl = []
         playlists.map(async data => {
@@ -528,7 +528,7 @@ await interaction.editReply({
 
         trackl = trackl.filter(a => a.plays > 0) 
 
-        if (!trackl?.length > 0) return interaction.reply({ content: 'ไม่มีเพลย์ลิสต์ ❌', ephemeral: true }).catch(e => { })
+        if (!trackl?.length > 0) return interaction.reply({ content: 'There are no playlists ❌', ephemeral: true }).catch(e => { })
 
         trackl = trackl.sort((a, b) => b.plays - a.plays)
 
@@ -560,7 +560,7 @@ await interaction.editReply({
         const generateEmbed = async (start) => {
           let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1
           const current = trackl.slice(start, start + kaçtane)
-          if (!current || !current?.length > 0) return interaction.reply({ content: `ไม่มีอัลบั้ม ❌`, ephemeral: true }).catch(e => { })
+          if (!current || !current?.length > 0) return interaction.reply({ content: `There are no Albums ❌`, ephemeral: true }).catch(e => { })
           return new EmbedBuilder()
             .setAuthor({
               name: 'Top Albums',
@@ -592,7 +592,7 @@ await interaction.editReply({
           collector.on("collect", async (button) => {
             if (button.customId === "close") {
               collector.stop()
-              return button.reply({ content: `คำสั่งหยุดลง ✅`, ephemeral: true }).catch(e => { })
+              return button.reply({ content: `Command stopped ✅`, ephemeral: true }).catch(e => { })
             } else {
 
               if (button.customId === backId) {
