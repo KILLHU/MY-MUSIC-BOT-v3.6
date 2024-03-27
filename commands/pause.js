@@ -27,7 +27,7 @@ module.exports = {
 
     try {
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
       }
 
       const success = queue.pause();
