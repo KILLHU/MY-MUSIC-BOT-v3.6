@@ -59,8 +59,6 @@ module.exports = {
         ) 
         .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=654f37ba&is=653cc2ba&hm=648a2e070fab36155f4171962e9c3bcef94857aca3987a181634837231500177&`);
 
-const row = new ActionRowBuilder() .addComponents (button1, button2, button3);
-
       interaction.reply({
         embeds: [musicCommandsEmbed, basicCommandsEmbed],
         components: [row]
