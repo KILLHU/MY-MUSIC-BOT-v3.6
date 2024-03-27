@@ -3,14 +3,15 @@ const db = require("../mongoDB");
 
 
 let selectedThumbnailURL;
+
 module.exports = {
   name: "play",
-  description: "มามาฟังเพลงกันเถอะ",
+  description: "come one let's hear some music!!",
   permissions: "0x0000000000000800",
   options: [{
     name: 'name',
-    description: 'พิมพ์ชื่อเพลงที่คุณต้องการเล่น.',
-        type: ApplicationCommandOptionType.String,
+    description: 'Type the name of the music you want to play.',
+    type: ApplicationCommandOptionType.String,
     required: true
   }],
   voiceChannel: true,
