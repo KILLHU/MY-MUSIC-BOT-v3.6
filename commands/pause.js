@@ -18,7 +18,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "pause",
-  description: "Stops playing the currently playing music.",
+  description: "หยุดเล่นเพลงที่กำลังเล่นอยู่",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -27,7 +27,7 @@ module.exports = {
 
     try {
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction.reply({ content: '⚠️ไม่มีเพลงที่กำลังเล่น', ephemeral: true });
       }
 
       const success = queue.pause();
