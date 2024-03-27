@@ -27,11 +27,11 @@ module.exports = {
     
     try {
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
       }
 
       if (!queue.songs[0]) {
-        return interaction.reply({ content: '❌ Queue is empty!!', ephemeral: true });
+        return interaction.reply({ content: '❌คิวว่าง!!', ephemeral: true });
       }
 
       await queue.stop(interaction.guild.id);
