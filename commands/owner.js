@@ -18,7 +18,7 @@ const db = require("../mongoDB");
 
 module.exports = {
   name: "owner",
-  description: "รับข้อมูลเกี่ยวกับเจ้าของบอท",
+  description: "Get information about bot owner.",
   permissions: "0x0000000000000800",
   options: [],
 
