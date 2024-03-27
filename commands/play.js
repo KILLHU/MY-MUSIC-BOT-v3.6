@@ -1,8 +1,5 @@
-const { ApplicationCommandOptionType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { ApplicationCommandOptionType, MessageEmbed, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const db = require("../mongoDB");
-
-
-let selectedThumbnailURL;
 
 module.exports = {
   name: "play",
@@ -33,9 +30,9 @@ module.exports = {
 
       if (!res || !res.length || !res.length > 1) return interaction.reply({ content: `❌ไม่พบเพลง`, ephemeral: true }).catch(e => { });
 
-      const embed = new EmbedBuilder();
+      const embed = new MessageEmbed();
       embed.setColor(client.config.embedColor);
-      embed.setTitle(`คำค้นหา`: ${name}`);
+      embed.setTitle(`คำค้นหา: ${name}`);
 
       const maxTracks = res.slice(0, 10);
 
@@ -67,7 +64,7 @@ module.exports = {
           .setCustomId('cancel')
       );
 
-      embed.setDescription(`${maxTracks.map((song, i) => `**${i + 1}**. [${song.name}](${song.url}) | \`${song.uploader.name}\``).join('\n')}\n\n`✨เลือกหมายเลขที่ต้องการเล่น`);
+      embed.setDescription(`${maxTracks.map((song, i) => `**${i + 1}**. [${song.name}](${song.url}) | \`${song.uploader.name}\``).join('\n')}\n\n✨เลือกหมายเลขที่ต้องการเล่น`);
 
       let code;
       if (buttons1 && buttons2) {
@@ -89,7 +86,7 @@ module.exports = {
             }
             break;
             default: {
-              selectedThumbnailURL = maxTracks[Number(button.customId) - 1].thumbnail;
+              const selectedThumbnailURL = maxTracks[Number(button.customId) - 1].thumbnail;
               embed.setThumbnail(selectedThumbnailURL);
               embed.setDescription(`**${res[Number(button.customId) - 1].name}**`);
               await interaction.editReply({ embeds: [embed], components: [] }).catch(e => { });
