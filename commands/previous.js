@@ -11,7 +11,7 @@ module.exports = {
       if (!queue || !queue.playing) return interaction.reply({ content: `⚠️ไม่เปิดเพลง!!`, ephemeral: true }).catch(e => { })
       try {
         let song = await queue.previous()
-        interaction.reply({ content: `**Behold, the enchanting melody of the past!!**` }).catch(e => { })
+        interaction.reply({ content: `**ดูเถิด ท่วงทำนองอันน่าหลงใหลแห่งอดีต!!**` }).catch(e => { })
       } catch (e) {
         return interaction.reply({ content: `❌ไม่มีเพลงก่อนหน้า!!`, ephemeral: true }).catch(e => { })
       }
