@@ -18,7 +18,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "clear",
-  description: "Clears the music queue.",
+  description: "ล้างคิวเพลง.",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
