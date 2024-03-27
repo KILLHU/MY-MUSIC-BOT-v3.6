@@ -17,11 +17,11 @@ const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
 const db = require("../mongoDB");
 module.exports = {
   name: "skip",
-  description: "Switches the music being played.",
+  description: "ข้ามเพลงที่กำลังเล่น",
   permissions: "0x0000000000000800",
   options: [{
     name: "number",
-    description: "mention how many songs you wanna skip",
+    description: "จำนวนเพลงที่คุณต้องการข้าม",
     type: ApplicationCommandOptionType.Number,
     required: false
   }],
@@ -31,7 +31,7 @@ module.exports = {
     try {
 
       const queue = client.player.getQueue(interaction.guild.id);
-      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
+      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
 
       let number = interaction.options.getNumber('number');
       if (number) {
