@@ -26,7 +26,7 @@ module.exports = {
     try {
       const queue = client?.player?.getQueue(interaction?.guild?.id);
       if (!queue || !queue?.playing) {
-        return interaction?.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction?.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น โปรดเล่นเพลงก่อนเพื่อใช้งานAutoplay', ephemeral: true });
       }
       
       queue?.toggleAutoplay();
@@ -34,7 +34,7 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setColor('#2f58fe')
         .setTitle('Your Music, Your Call!!')
-        .setDescription(queue?.autoplay ? '**✅ Autoplay ON**' : '**❌ Autoplay OFF**')
+        .setDescription(queue?.autoplay ? '**✅เปิดAutoplay**' : '**❌ปิดAutoplay**')
         
       
       interaction?.reply({ embeds: [embed] });
