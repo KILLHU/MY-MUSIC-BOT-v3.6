@@ -3,7 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "resume",
-  description: "Start paused music.",
+  description: "เริ่มเพลงที่หยุดชั่วคราว",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
