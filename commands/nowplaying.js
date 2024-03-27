@@ -9,10 +9,10 @@ module.exports = {
     try {
 
       const queue = client.player.getQueue(interaction.guild.id);
-      if (!queue || !queue.playing) return interaction.reply({ content: `⚠️ No music playing!!`, ephemeral: true }).catch(e => { })
+      if (!queue || !queue.playing) return interaction.reply({ content: `⚠️ไม่พบเพลงที่กำลังเล่น`, ephemeral: true }).catch(e => { })
 
       const track = queue.songs[0];
-      if (!track) return interaction.reply({ content: `⚠️ No music playing!!`, ephemeral: true }).catch(e => { })
+      if (!track) return interaction.reply({ content: `⚠️ไม่พบเพลงที่กำลังเล่น`, ephemeral: true }).catch(e => { })
 
       const embed = new EmbedBuilder();
       embed.setColor(client.config.embedColor);
