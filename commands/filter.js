@@ -1,7 +1,7 @@
 const db = require("../mongoDB");
 module.exports = {
   name: "filter",
-  description: "Adds audio filter to ongoing music.",
+  description: "เพิ่มฟิลเตอร์เสียงให้กับเพลงที่กำลังเล่นอยู่.",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -9,7 +9,7 @@ module.exports = {
     try {
       const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
       const queue = client?.player?.getQueue(interaction?.guild?.id);
-      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
+      if (!queue || !queue?.playing) return interaction?.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
 
       let buttons = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -71,7 +71,7 @@ module.exports = {
 if(!filters?.includes(button?.customId)) return
 
       let filtre = button.customId
-      if (!filtre) return interaction?.editReply({ content: '❌ Invalid Name', ephemeral: true }).catch(e => { })
+      if (!filtre) return interaction?.editReply({ content: '❌ชื่อไม่ถูกต้อง', ephemeral: true }).catch(e => { })
      filtre = filtre?.toLowerCase()
    
       if (filters?.includes(filtre?.toLowerCase())) {
@@ -86,7 +86,7 @@ if(!filters?.includes(button?.customId)) return
         }
       } else {
         const filter = filters?.find((x) => x?.toLowerCase() === filtre?.toLowerCase())
-        embed?.setDescription(`❌ Couldn't find filter!!`.replace("{filters}", filters?.map(mr => `\`${mr}\``).join(", ")))
+        embed?.setDescription(`❌ไม่พบฟิลเตอร์!!`.replace("{filters}", filters?.map(mr => `\`${mr}\``).join(", ")))
         if (!filter) return interaction?.editReply({ embeds: [embed] }).catch(e => { })
       }
     })
