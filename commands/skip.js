@@ -17,32 +17,32 @@ const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
 const db = require("../mongoDB");
 module.exports = {
   name: "skip",
-  description: "สลับเพลงที่กำลังเล่น",
+  description: "Switches the music being played.",
   permissions: "0x0000000000000800",
   options: [{
     name: "number",
-    description: "พูดถึงจำนวนเพลงที่คุณต้องการข้าม",
+    description: "mention how many songs you wanna skip",
     type: ApplicationCommandOptionType.Number,
     required: false
   }],
   voiceChannel: true,
   run: async (client, interaction) => {
-    
+
     try {
 
       const queue = client.player.getQueue(interaction.guild.id);
-      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ไม่เปิดเพลง!!', ephemeral: true }).catch(e => { })
+      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
 
       let number = interaction.options.getNumber('number');
       if (number) {
-        if (!queue.songs.length > number) return interaction.reply({ content: '⚠️เกินจำนวนเพลงในปัจจุบัน', ephemeral: true }).catch(e => { })
-        if (isNaN(number)) return interaction.reply({ content: '⚠️หมายเลขไม่ถูกต้อง', ephemeral: true }).catch(e => { })
-        if (1 > number) return interaction.reply({ content: '⚠️หมายเลขไม่ถูกต้อง', ephemeral: true }).catch(e => { })
+        if (!queue.songs.length > number) return interaction.reply({ content: '⚠️ Exceeded current no of songs', ephemeral: true }).catch(e => { })
+        if (isNaN(number)) return interaction.reply({ content: '⚠️ Invalid Number', ephemeral: true }).catch(e => { })
+        if (1 > number) return interaction.reply({ content: '⚠️ Invalid Number', ephemeral: true }).catch(e => { })
 
         try {
         let old = queue.songs[0];
         await client.player.jump(interaction, number).then(song => {
-          return interaction.reply({ content: `⏯️ข้ามไป : **${old.name}**` }).catch(e => { })
+          return interaction.reply({ content: `⏯️ Skipped : **${old.name}**` }).catch(e => { })
         })
       } catch(e){
         return interaction.reply({ content: '❌ Queue is empty!!', ephemeral: true }).catch(e => { })
@@ -51,7 +51,7 @@ module.exports = {
 try {
   const queue = client.player.getQueue(interaction.guild.id);
   if (!queue || !queue.playing) {
-    return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
+    return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
   }
 
   let old = queue.songs[0];
@@ -64,12 +64,12 @@ try {
       iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157269773118357604/giphy.gif?ex=6517fef6&is=6516ad76&hm=f106480f7d017a07f75d543cf545bbea01e9cf53ebd42020bd3b90a14004398e&',
       url: 'https://discord.gg/FUEHs7RCqz'
     })
-    .setDescription(success ? ` **SKIPPED** : **${old.name}**` : '❌คิวว่าง!')
+    .setDescription(success ? ` **SKIPPED** : **${old.name}**` : '❌ Queue is empty!')
     .setTimestamp();
 
   return interaction.reply({ embeds: [embed] });
 }catch (e) {
-          return interaction.reply({ content: '❌คิวว่าง!!', ephemeral: true }).catch(e => { })
+          return interaction.reply({ content: '❌ Queue is empty!!', ephemeral: true }).catch(e => { })
         }
       }
 
