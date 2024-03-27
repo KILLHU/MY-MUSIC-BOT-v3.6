@@ -26,12 +26,12 @@ module.exports = {
     try {
 
       const start = Date.now();
-      interaction.reply("Pinging....").then(msg => {
+      interaction.reply("ping...").then(msg => {
         const end = Date.now();
         const embed = new EmbedBuilder()
           .setColor(`#6190ff`)
           .setTitle(`Bot Latency`)
-          .setDescription(`**Pong** : ${end - start}ms`)
+          .setDescription(`**ปิง** : ${end - start}ms`)
         return interaction.editReply({ embeds: [embed] }).catch(e => { });
       }).catch(err => { })
 
