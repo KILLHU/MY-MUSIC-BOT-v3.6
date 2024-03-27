@@ -4,7 +4,7 @@ const db = require("../mongoDB");
 
 module.exports = {
   name: "volume",
-  description: "ช่วยให้คุณปรับระดับเสียงเพลงได้",
+  description: "Allows you to adjust the music volume.",
   permissions: "0x0000000000000800",
   options: [{
     name: 'volume',
@@ -17,14 +17,14 @@ module.exports = {
     try {
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
+        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
       }
 
       const vol = parseInt(interaction.options.getInteger('volume'));
 
       if (!vol) {
         return interaction.reply({
-          content: `Current volume: **${queue.volume}** 🔊\หากต้องการเปลี่ยนระดับเสียง ให้พิมพ์ตัวเลขระหว่าง \`1\` and \`${maxVol}\`.`,
+          content: `Current volume: **${queue.volume}** 🔊\nTo change the volume, type a number between \`1\` and \`${maxVol}\`.`,
           ephemeral: true
         });
       }
@@ -50,11 +50,11 @@ module.exports = {
         iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157528025739563088/5657-volume-icon.png?ex=6518ef7b&is=65179dfb&hm=1797c2830537a28b5c6a57564517cc509146d02383a69fb4239d7b5d55aceeed&', 
         url: 'https://discord.gg/FUEHs7RCqz'
     })
-          .setDescription(`**การปรับระดับเสียง : ** **${vol}/${maxVol}**`);
+          .setDescription(`**Adjusting Volume : ** **${vol}/${maxVol}**`);
 
         return interaction.reply({ embeds: [embed] });
       } else {
-        return interaction.reply({ content: '❌เกิดข้อผิดพลาดขณะเปลี่ยนระดับเสียง', ephemeral: true });
+        return interaction.reply({ content: '❌ Something went wrong while changing the volume.', ephemeral: true });
       }
     } catch (e) {
       console.error(e);
