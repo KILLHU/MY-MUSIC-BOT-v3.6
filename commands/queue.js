@@ -17,7 +17,7 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('
 const db = require("../mongoDB");
 module.exports = {
   name: "queue",
-  description: "It shows you the queue list.",
+  description: "แสดงรายการคิว",
   permissions: "0x0000000000000800",
   options: [],
   run: async (client, interaction) => {
