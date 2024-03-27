@@ -16,7 +16,7 @@
 const db = require("../mongoDB");
 module.exports = {
   name: "loop",
-  description: "Turns the music loop mode on or off.",
+  description: "เปิดหรือปิดโหมดลูปเพลง",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -25,7 +25,7 @@ module.exports = {
     try {
       const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
       const queue = client.player.getQueue(interaction.guild.id);
-      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
+      if (!queue || !queue.playing) return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
   
       let button = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
@@ -60,27 +60,27 @@ module.exports = {
           if (button.user.id !== interaction.user.id) return
           const queue1 = client.player.getQueue(interaction.guild.id);
           if (!queue1 || !queue1.playing) {
-            await interaction?.editReply({ content: '⚠️ No music playing!!', ephemeral: true }).catch(e => { })
+            await interaction?.editReply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { })
             await button?.deferUpdate().catch(e => {})
           }
           switch (button.customId) {
             case 'queue':
               const success = queue.setRepeatMode(2);
-              interaction?.editReply({ content: `✅ Looping Queue!!` }).catch(e => { })
+              interaction?.editReply({ content: `✅คิววนซ้ำ!!` }).catch(e => { })
               await button?.deferUpdate().catch(e => {})
               break
             case 'nowplaying':
               const success2 = queue.setRepeatMode(1);
-              interaction?.editReply({ content: `✅ Looping activated!!` }).catch(e => { })
+              interaction?.editReply({ content: `✅เปิดใช้กานการวนซ้ำแล้ว!!` }).catch(e => { })
               await button?.deferUpdate().catch(e => {})
               break
             case 'close':
               if (queue.repeatMode === 0) {
                 await button?.deferUpdate().catch(e => {})
-                return interaction?.editReply({ content: '⚠️ Looping already Off!!', ephemeral: true }).catch(e => { })
+                return interaction?.editReply({ content: '⚠️วนลูปปิดแล้ว!!', ephemeral: true }).catch(e => { })
               }
               const success4 = queue.setRepeatMode(0);
-              interaction?.editReply({ content: '▶️ Looping off' }).catch(e => { })
+              interaction?.editReply({ content: '🔁กำลังวนลูปอยู่' }).catch(e => { })
               await button?.deferUpdate().catch(e => {})
               break
           }
@@ -95,7 +95,7 @@ module.exports = {
 
           const embed = new EmbedBuilder()
             .setColor('#fc5203')
-            .setTitle('▶️ Looping off!!')
+            .setTitle('🔁วนลูป!!')
             .setTimestamp()
 
           await interaction?.editReply({ content: "", embeds: [embed], components: [button] }).catch(e => { });
