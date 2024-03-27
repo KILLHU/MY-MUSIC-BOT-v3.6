@@ -6,11 +6,11 @@ let selectedThumbnailURL;
 
 module.exports = {
   name: "play",
-  description: "come one let's hear some music!!",
+  description: "มามาฟังเพลงกันเถอะ",
   permissions: "0x0000000000000800",
   options: [{
     name: 'name',
-    description: 'Type the name of the music you want to play.',
+    description: 'พิมพ์ชื่อเพลงที่คุณต้องการเล่น.',
     type: ApplicationCommandOptionType.String,
     required: true
   }],
@@ -19,7 +19,7 @@ module.exports = {
     try {
 
       const name = interaction.options.getString('name')
-      if (!name) return interaction.reply({ content: `❌ Enter a valid song name.`, ephemeral: true }).catch(e => { });
+      if (!name) return interaction.reply({ content: `❌ กรอกชื่อเพลงที่ถูกต้อง.`, ephemeral: true }).catch(e => { });
       let res;
       try {
         res = await client.player.search(name, {
@@ -28,10 +28,10 @@ module.exports = {
           interaction
         });
       } catch (e) {
-        return interaction.editReply({ content: `❌ No results` }).catch(e => { });
+        return interaction.editReply({ content: `❌ไม่พบเพลง` }).catch(e => { });
       }
 
-      if (!res || !res.length || !res.length > 1) return interaction.reply({ content: `❌ No results`, ephemeral: true }).catch(e => { });
+      if (!res || !res.length || !res.length > 1) return interaction.reply({ content: `❌ไม่พบเพลง`, ephemeral: true }).catch(e => { });
 
       const embed = new EmbedBuilder();
       embed.setColor(client.config.embedColor);
@@ -100,7 +100,7 @@ module.exports = {
                   interaction
                 });
               } catch (e) {
-                await interaction.editReply({ content: `❌ No results!`, ephemeral: true }).catch(e => { });
+                await interaction.editReply({ content: `❌ไม่พบเพลง`, ephemeral: true }).catch(e => { });
               }
               return collector.stop();
             }
