@@ -18,7 +18,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "stop",
-  description: "Stops the music.",
+  description: "หยุดเพลง",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -26,7 +26,7 @@ module.exports = {
     try {
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
       }
 
       queue.stop(interaction.guild.id);
