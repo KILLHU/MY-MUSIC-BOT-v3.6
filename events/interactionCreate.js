@@ -55,7 +55,7 @@ return interaction?.reply({ content: "Rate Limited.", ephemeral: true })
 
             if (!channel_filter?.length > 0 && !interaction?.member?.permissions?.has("0x0000000000000020")) {
             channel_filter = data?.channels?.map(x => `<#${x.channel}>`).join(", ")
-            return interaction?.reply({ content: '🔴 Rate Limited'.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
+            return interaction?.reply({ content: '🔴อัตราจำกัด'.replace("{channel_filter}", channel_filter), ephemeral: true }).catch(e => { })
             }
         }
             }
@@ -82,11 +82,11 @@ return interaction?.reply({ content: "Rate Limited.", ephemeral: true })
             }
             }
             if (props && props.voiceChannel) {
-            if (!interaction?.member?.voice?.channelId) return interaction?.reply({ content: `🔴 Join Voice channel First!!`, ephemeral: true }).catch(e => { })
+            if (!interaction?.member?.voice?.channelId) return interaction?.reply({ content: `❌️เข้าช่องเสียงก่อน`, ephemeral: true }).catch(e => { })
             const guild_me = interaction?.guild?.members?.cache?.get(client?.user?.id);
             if (guild_me?.voice?.channelId) {
             if (guild_me?.voice?.channelId !== interaction?.member?.voice?.channelId) {
-            return interaction?.reply({ content: `🔴 Must be in same VC!!`, ephemeral: true }).catch(e => { })
+            return interaction?.reply({ content: `🔴ต้องอยู่ในช่องเดียวกัน!!`, ephemeral: true }).catch(e => { })
             }
             }
             }
