@@ -21,7 +21,7 @@ const { ButtonStyle } = require('discord.js');
 
 module.exports = {
   name: "help",
-  description: "Get information about bot and commands.",
+  description: "รับข้อมูลเกี่ยวกับบอทและคำสั่ง.",
   permissions: "0x0000000000000800",
   options: [],
 
@@ -29,33 +29,33 @@ module.exports = {
     try {
       const musicCommandsEmbed = new EmbedBuilder()
         .setColor(client.config.embedColor)
-        .setTitle('🎸 **Music Commands**')
+        .setTitle('🎸 **คำสั่งบอท**')
         .addFields(
-          { name: '🎹 Play', value: 'Stream a song from a given link or text from sources' },
-          { name: '⏹️ Stop', value: 'Makes the bot stop playing music and leave the voice' },
-          { name: '📊 Queue', value: 'View and manage the song queue of this server' },
-          { name: '⏭️ Skip', value: 'Skip the current playing song' },
-          { name: '⏸️ Pause', value: 'Pause the currently playing song' },
-          { name: '▶️ Resume', value: 'Resume the current paused song' },
-          { name: '🔁 Loop', value: 'Toggle loop mode for queue and current song' },
-          { name: '🔄 Autoplay', value: 'Enable or disable autoplay [play random songs ]' },
-          { name: '⏩ Seek', value: 'Seek to a specific time in the current song' },
-          { name: '⏮️ Previous', value: 'Play the previous song in the queue' },
-          { name: '🔀 Shuffle', value: 'Shuffle the songs in queue' },
-          { name: '📃 playlist', value: 'manage the playlists' }
+          { name: '🎹 Play', value: 'สตรีมเพลงจากลิงก์ที่กำหนดหรือข้อความจากแหล่งที่มา' },
+          { name: '⏹️ Stop', value: 'ทำให้บอทหยุดเล่นเพลงและทิ้งเสียงไว้' },
+          { name: '📊 Queue', value: 'ดูและจัดการคิวเพลงของเซิร์ฟเวอร์นี้' },
+          { name: '⏭️ Skip', value: 'ข้ามเพลงที่กำลังเล่นอยู่' },
+          { name: '⏸️ Pause', value: 'หยุดเพลงที่กำลังเล่นชั่วคราว' },
+          { name: '▶️ Resume', value: 'เล่นเพลงที่หยุดชั่วคราวปัจจุบันต่อ' },
+          { name: '🔁 Loop', value: 'สลับโหมดวนซ้ำสำหรับคิวและเพลงปัจจุบัน' },
+          { name: '🔄 Autoplay', value: 'เปิดหรือปิดการเล่นอัตโนมัติ [เล่นเพลงแบบสุ่ม]' },
+          { name: '⏩ Seek', value: 'ค้นหาเวลาที่เจาะจงในเพลงปัจจุบัน' },
+          { name: '⏮️ Previous', value: 'เล่นเพลงก่อนหน้าในคิว' },
+          { name: '🔀 Shuffle', value: 'สุ่มเพลงในคิว' },
+          { name: '📃 playlist', value: 'จัดการเพลย์ลิสต์' }
         )
         .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=654f37ba&is=653cc2ba&hm=648a2e070fab36155f4171962e9c3bcef94857aca3987a181634837231500177&`); 
 
       const basicCommandsEmbed = new EmbedBuilder()
         .setColor(client.config.embedColor)
-        .setTitle('✨ **Basic Commands**')
+        .setTitle('✨ **คำสั่งพื้นฐาน**')
         .addFields(
-          { name: '🏓 Ping', value: "Check the bot's latency" },
-          { name: '🗑️ Clear', value: 'Clear the song queue of this server' },
-          { name: '⏱️ Time', value: 'Display the current song playback time' },
-          { name: '🎧 Filter', value: 'Apply filters to enhance the sound as you love' },
-           { name: '🎵 Now Playing', value: 'Display the currently playing song information' },
-          { name: '🔊 Volume', value: 'Adjust the music volume [ hearing at high volumes is risky ]' },
+          { name: '🏓 Ping', value: "เช็คปิงหรือเวลาแฝงของบอท" },
+          { name: '🗑️ Clear', value: 'ล้างคิวเพลงของเซิร์ฟเวอร์นี้' },
+          { name: '⏱️ Time', value: 'แสดงเวลาเล่นเพลงปัจจุบัน' },
+          { name: '🎧 Filter', value: 'ใช้ฟิลเตอร์เพื่อเพิ่มคุณภาพเสียงตามที่คุณต้องการ' },
+           { name: '🎵 Now Playing', value: 'แสดงข้อมูลเพลงที่กำลังเล่นอยู่' },
+          { name: '🔊 Volume', value: 'ปรับระดับเสียงเพลง [ การได้ยินที่ระดับเสียงสูงมีความเสี่ยง ]' },
         ) 
        .setImage('https://cdn.discordapp.com/attachments/1150827819547504741/1168917372267151370/standard.gif?ex=65538222&is=65410d22&hm=b4994392f44679da41fc9304eb69deaa3769e136057556deec0db69ae8d33a97&')
       const button1 = new ButtonBuilder()
