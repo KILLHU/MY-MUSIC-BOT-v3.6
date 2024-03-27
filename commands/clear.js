@@ -18,7 +18,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "clear",
-  description: "Clears the music queue.",
+  description: "ล้างคิวเพลง",
   permissions: "0x0000000000000800",
   options: [],
   voiceChannel: true,
@@ -27,7 +27,7 @@ module.exports = {
 
     try {
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true });
       }
 
       if (!queue.songs[0]) {
