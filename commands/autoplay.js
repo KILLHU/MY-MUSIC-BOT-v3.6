@@ -19,7 +19,7 @@ const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
   name: "autoplay",
-  description: "Toggle the autoplay of the queue.",
+  description: "สลับการเล่นอัตโนมัติของคิว",
   options: [],
   permissions: "0x0000000000000800",
   run: async (client, interaction) => {
