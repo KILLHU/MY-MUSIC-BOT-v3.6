@@ -2,17 +2,17 @@ const { ApplicationCommandOptionType, EmbedBuilder } = require('discord.js');
 const db = require("../mongoDB");
 module.exports = {
   name: "playsong",
-  description: "Play a track.",
+  description: "เล่นเพลง",
   permissions: "0x0000000000000800",
   options: [
     {
       name: "normal",
-      description: "Open music from other platforms.",
+      description: "เปิดเพลงจากแพลตฟอร์มอื่น",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "name",
-          description: "Write your music name.",
+          description: "เขียนชื่อเพลงของคุณ",
           type: ApplicationCommandOptionType.String,
           required: true
         }
@@ -20,12 +20,12 @@ module.exports = {
     },
     {
       name: "playlist",
-      description: "Write your playlist name.",
+      description: "เขียนชื่อเพลย์ลิสต์ของคุณ",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "name",
-          description: "Write the name of the playlist you want to create.",
+          description: "เขียนชื่อเพลย์ลิสต์ที่คุณต้องการสร้าง",
           type: ApplicationCommandOptionType.String,
           required: true
         }
