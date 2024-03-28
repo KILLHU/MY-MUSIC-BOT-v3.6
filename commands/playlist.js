@@ -7,7 +7,7 @@ module.exports = {
   options: [
     {
       name: "create",
-      description: "Create an Album.",
+      description: "สร้างอัลบั้ม",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
@@ -18,7 +18,7 @@ module.exports = {
         },
         {
           name: "public",
-          description: "ต้องการทำให้เป็นสาธารณะหรือไม่? จริงหรือเท็จ True or false",
+          description: "ต้องการทำให้เป็นสาธารณะหรือไม่ จริงหรือเท็จ True or false",
           type: ApplicationCommandOptionType.Boolean,
           required: true
         }
