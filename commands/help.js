@@ -57,7 +57,7 @@ module.exports = {
            { name: '🎵 Now Playing', value: 'แสดงข้อมูลเพลงที่กำลังเล่นอยู่' },
           { name: '🔊 Volume', value: 'ปรับระดับเสียงเพลง [ การได้ยินที่ระดับเสียงสูงมีความเสี่ยง ]' }
         ) 
-        .setImage(`https://lh3.googleusercontent.com/pw/AP1GczMEVh6rthROR9I-Q5mu-akyZ8_kt8zzhBsxvIe1IWXXt7AhpTeDiTIMeL1MpMYnuDOhfEHPc5FV_13-jzgZ3F74lf7hx8sClKnDVld0Iu5lma1dYsy8e-NUKDipAlwdmWFT6okl8KgcjberU9S5fW5Wvg=w1080-h606-s-no-gm?authuser=0`);
+        .setImage(`https://lh3.googleusercontent.com/pw/AP1GczOw9HA27PmQGezP_S-BU2J1Na6LRLXQ5qHcz9vxk0Xs4nDYug-p4HugXrLbKPNN52cVk_ZBIr4P6iQ_dZFpai1M8OVeIxZUBRyCBFVomi1ssCFgudV0_3J1z73vQR1_COCGDPo9D2Ksx9Hi1kkGWD7HqA=w1080-h606-s-no-gm`);
 
 await interaction.reply({
         embeds: [musicCommandsEmbed, basicCommandsEmbed]
