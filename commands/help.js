@@ -57,7 +57,7 @@ module.exports = {
            { name: '🎵 Now Playing', value: 'แสดงข้อมูลเพลงที่กำลังเล่นอยู่' },
           { name: '🔊 Volume', value: 'ปรับระดับเสียงเพลง [ การได้ยินที่ระดับเสียงสูงมีความเสี่ยง ]' }
         ) 
-        .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=654f37ba&is=653cc2ba&hm=648a2e070fab36155f4171962e9c3bcef94857aca3987a181634837231500177&`);
+        .setImage(`https://lh3.googleusercontent.com/pw/AP1GczMEVh6rthROR9I-Q5mu-akyZ8_kt8zzhBsxvIe1IWXXt7AhpTeDiTIMeL1MpMYnuDOhfEHPc5FV_13-jzgZ3F74lf7hx8sClKnDVld0Iu5lma1dYsy8e-NUKDipAlwdmWFT6okl8KgcjberU9S5fW5Wvg=w1080-h606-s-no-gm?authuser=0`);
 
 await interaction.reply({
         embeds: [musicCommandsEmbed, basicCommandsEmbed]
