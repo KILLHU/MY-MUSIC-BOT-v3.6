@@ -31,7 +31,7 @@ module.exports = {
       }
 
       if (!queue.songs[0]) {
-        return interaction.reply({ content: '❌ Queue is empty!!', ephemeral: true });
+        return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true });
       }
 
       await queue.stop(interaction.guild.id);
@@ -43,7 +43,7 @@ module.exports = {
           iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157314241393598585/4618-no-slides.png?ex=65182861&is=6516d6e1&hm=dac8fed5a18e1574485e833d4c017591c50f59d161e1bde7fed5f6a92543f951&',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
-        .setDescription('**Queue cleared! Be Ready for a new musical journey.**')
+        .setDescription('**เคลียร์คิวแล้ว! เตรียมพร้อมสำหรับการเดินทางทางดนตรีครั้งใหม่**')
 
 
       interaction.reply({ embeds: [embed] });
