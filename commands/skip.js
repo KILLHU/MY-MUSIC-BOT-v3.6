@@ -35,9 +35,9 @@ module.exports = {
 
       let number = interaction.options.getNumber('number');
       if (number) {
-        if (!queue.songs.length > number) return interaction.reply({ content: '⚠️ Exceeded current no of songs', ephemeral: true }).catch(e => { })
-        if (isNaN(number)) return interaction.reply({ content: '⚠️ Invalid Number', ephemeral: true }).catch(e => { })
-        if (1 > number) return interaction.reply({ content: '⚠️ Invalid Number', ephemeral: true }).catch(e => { })
+        if (!queue.songs.length > number) return interaction.reply({ content: '⚠️ เกินจำนวนเพลงในปัจจุบัน', ephemeral: true }).catch(e => { })
+        if (isNaN(number)) return interaction.reply({ content: '⚠️ หมายเลขไม่ถูกต้อง', ephemeral: true }).catch(e => { })
+        if (1 > number) return interaction.reply({ content: '⚠️ หมายเลขไม่ถูกต้อง', ephemeral: true }).catch(e => { })
 
         try {
         let old = queue.songs[0];
@@ -51,7 +51,7 @@ module.exports = {
 try {
   const queue = client.player.getQueue(interaction.guild.id);
   if (!queue || !queue.playing) {
-    return interaction.reply({ content: '⚠️ No music playing!!', ephemeral: true });
+    return interaction.reply({ content: '⚠️ ไม่มีการเล่นดนตรี!!', ephemeral: true });
   }
 
   let old = queue.songs[0];
@@ -64,7 +64,7 @@ try {
       iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157269773118357604/giphy.gif?ex=6517fef6&is=6516ad76&hm=f106480f7d017a07f75d543cf545bbea01e9cf53ebd42020bd3b90a14004398e&',
       url: 'https://discord.gg/FUEHs7RCqz'
     })
-    .setDescription(success ? ` **SKIPPED** : **${old.name}**` : '❌ Queue is empty!')
+    .setDescription(success ? ` **ข้ามไป** : **${old.name}**` : '❌ Queue is empty!')
     .setTimestamp();
 
   return interaction.reply({ embeds: [embed] });
