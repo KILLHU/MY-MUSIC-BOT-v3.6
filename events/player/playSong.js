@@ -7,7 +7,7 @@ module.exports = async (client, queue, song) => {
     if (queue?.textChannel) {
       const embed = new EmbedBuilder()
       .setAuthor({
-        name: 'Currently playing a Track',
+        name: 'กำลังเล่นแทร็กอยู่',
         iconURL: 'https://cdn.discordapp.com/attachments/1140841446228897932/1144671132948103208/giphy.gif', 
         url: 'https://discord.gg/FUEHs7RCqz'
     })
