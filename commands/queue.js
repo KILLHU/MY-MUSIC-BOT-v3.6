@@ -74,7 +74,7 @@ module.exports = {
           .setColor(client.config.embedColor)
           .setDescription(`▶️ ตอนนี้กำลังเล่น: \`${queue.songs[0].name}\`
     ${current.map(data =>
-            `\n\`${sayı++}\` | [${data.title}](${data.url}) | (Executed by <@${data.user.id}>)`
+            `\n\`${sayı++}\` | [${data.title}](${data.url}) | (ขอเพลงโดย <@${data.user.id}>)`
           )}`)
           .setFooter({ text: `Page ${page}/${Math.floor(a + 1)}` })
       }
@@ -147,7 +147,7 @@ module.exports = {
           const embed = new EmbedBuilder()
             .setTitle('Command Timeout')
             .setColor(`#ecfc03`)
-            .setDescription('▶️ Execute the Queue command again!!')
+            .setDescription('▶️ ดำเนินการคำสั่งคิวอีกครั้ง!!')
           return interaction?.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
         })
