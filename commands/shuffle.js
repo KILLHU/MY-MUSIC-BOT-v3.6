@@ -13,7 +13,7 @@ module.exports = {
         if (!queue || !queue.playing) return interaction.reply({ content: `⚠️ไม่พบเพลงที่กำลังเล่น`, ephemeral: true }).catch(e => { })
         try {
           queue.shuffle(interaction)
-        return interaction.reply({ content: `<@${interaction.user.id}>, Shuffled the songs for You!!` }).catch(e => { })
+        return interaction.reply({ content: `<@${interaction.user.id}>, สุ่มเพลงสำหรับคุณ!!` }).catch(e => { })
         } catch(err) {
         return interaction.reply({ content: `**${err}**` }).catch(e => { })
         }
