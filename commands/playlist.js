@@ -153,7 +153,7 @@ module.exports = {
         const albumCreatedEmbed = new EmbedBuilder()
   .setColor('#00ff00')
           .setAuthor({
-            name: 'Album Created Sucessfully',
+            name: 'สร้างอัลบั้มสำเร็จแล้ว',
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
@@ -212,7 +212,7 @@ await interaction.editReply({
          const albumDeleteEmbed = new EmbedBuilder()
   .setColor('#00ff00')
           .setAuthor({
-            name: 'Album Deleted Sucessfully',
+            name: 'ลบอัลบั้มเรียบร้อยแล้ว',
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
@@ -235,10 +235,10 @@ await interaction.editReply({
         if (!playlist_name) return interaction.reply({ content: '⚠️ ป้อนชื่ออัลบั้มเพื่อเพิ่มเพลง', ephemeral: true }).catch(e => { })
 
         const playlist = await db.playlist.findOne({ userID: interaction.user.id }).catch(e => { })
-        if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: 'Your Song Added!', ephemeral: true }).catch(e => { })
+        if (!playlist?.playlist?.filter(p => p.name === playlist_name).length > 0) return interaction.reply({ content: 'เพิ่มเพลงของคุณแล้ว!', ephemeral: true }).catch(e => { })
 
         let max_music = client.config.playlistSettings.maxMusic
-        if (playlist?.musics?.filter(m => m.playlist_name === playlist_name).length > max_music) return interaction.reply({ content: "Reached Album songs limit".replace("{max_music}", max_music), ephemeral: true }).catch(e => { })
+        if (playlist?.musics?.filter(m => m.playlist_name === playlist_name).length > max_music) return interaction.reply({ content: "ถึงขีดจำกัดเพลงของอัลบั้มแล้ว".replace("{max_music}", max_music), ephemeral: true }).catch(e => { })
         let res 
         try{
           res = await client.player.search(name, {
@@ -253,7 +253,7 @@ await interaction.editReply({
         const loadingembed = new EmbedBuilder()
         .setColor('#0099ff')
        .setAuthor({
-          name: 'Song Added to Your Album',
+          name: 'เพลงที่เพิ่มในอัลบั้มของคุณ',
           iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213430944007061574/6943_Verified.gif',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
@@ -322,7 +322,7 @@ await interaction.editReply({
          const songDeleteEmbed = new EmbedBuilder()
   .setColor('#00ff00')
           .setAuthor({
-            name: 'Song Removed Sucessfully',
+            name: 'ลบเพลงเรียบร้อยแล้ว',
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
@@ -402,7 +402,7 @@ await interaction.editReply({
           if (!current || !current?.length > 0) return interaction.reply({ content: '❌ อัลบั้มของคุณว่างเปล่า, เพิ่มเพลงใด ๆ ลงไป!', ephemeral: true }).catch(e => { })
           return new EmbedBuilder()
            .setAuthor({
-          name: 'Album Songs',
+          name: 'เพลงอัลบั้ม',
           iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213422313035407360/8218-alert.gif',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
@@ -499,7 +499,7 @@ await interaction.editReply({
         let number = 1
         const embed = new EmbedBuilder()
           .setAuthor({
-            name: 'Your Albums',
+            name: 'อัลบั้มของคุณ',
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213422313035407360/8218-alert.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
@@ -563,7 +563,7 @@ await interaction.editReply({
           if (!current || !current?.length > 0) return interaction.reply({ content: `ไม่มีอัลบั้ม ❌`, ephemeral: true }).catch(e => { })
           return new EmbedBuilder()
             .setAuthor({
-              name: 'Top Albums',
+              name: 'อัลบั้มยอดนิยม',
               iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213422313035407360/8218-alert.gif',
               url: 'https://discord.gg/FUEHs7RCqz'
             })
@@ -572,7 +572,7 @@ await interaction.editReply({
             .setDescription(`\n${current.map(data =>
               `\n**${sayı++} |** \`${data.name}\` By. \`${data.authorTag}\` - **${data.plays}** "plays" (<t:${Math.floor(data.createdTime / 1000) }:R>)`
             ) }`)
-            .setFooter({ text: `Section ${page}/${Math.floor(a+1) }` })
+            .setFooter({ text: `หน้าที่ ${page}/${Math.floor(a+1) }` })
         }
 
         const canFitOnOnePage = trackl.length <= kaçtane
@@ -642,13 +642,13 @@ await interaction.editReply({
 
             const embed = new EmbedBuilder()
               .setAuthor({
-          name: 'Top Albums',
+          name: 'อัลบั้มยอดนิยม',
           iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213422313035407360/8218-alert.gif',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
               .setThumbnail(interaction.user.displayAvatarURL({ size: 2048, dynamic: true }))
               .setColor(client.config.embedColor)
-              .setDescription('TimeOut!')
+              .setDescription('หมดเวลา!')
               .setFooter({ text: 'YouTube - RTX GAMING' })
             return interaction.editReply({ embeds: [embed], components: [button] }).catch(e => { })
 
