@@ -572,7 +572,7 @@ await interaction.editReply({
             .setDescription(`\n${current.map(data =>
               `\n**${sayı++} |** \`${data.name}\` By. \`${data.authorTag}\` - **${data.plays}** "plays" (<t:${Math.floor(data.createdTime / 1000) }:R>)`
             ) }`)
-            .setFooter({ text: `หน้าที่ ${page}/${Math.floor(a+1) }` })
+            .setFooter({ text: `Section ${page}/${Math.floor(a+1) }` })
         }
 
         const canFitOnOnePage = trackl.length <= kaçtane
