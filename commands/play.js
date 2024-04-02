@@ -6,8 +6,8 @@ module.exports = {
   permissions: "0x0000000000000800",
   options: [
     {
-      name: "n",
-      description: "เปิดเพลงจากแพลตฟอร์มอื่น",
+      name: "normal",
+      description: "มาฟังเพลงกันเถอะ!",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
