@@ -6,7 +6,7 @@ module.exports = {
   permissions: "0x0000000000000800",
   options: [
     {
-      name: "normal",
+      name: "n",
       description: "มาฟังเพลงกันเถอะ!",
       type: ApplicationCommandOptionType.Subcommand,
       options: [
@@ -131,7 +131,7 @@ module.exports = {
         }
       }
 
-      if (stp === "normal") {
+      if (stp === "n") {
   const name = interaction.options.getString('name');
   if (!name) {
     return interaction.reply({ content: '▶️ ให้ข้อความหรือลิงค์', ephemeral: true }).catch(e => {});
