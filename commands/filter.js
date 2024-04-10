@@ -53,11 +53,11 @@ module.exports = {
       let embed = new EmbedBuilder()
       .setColor('#01fe66')
       .setAuthor({
-          name: 'Audio Filters ',
+          name: 'ฟิลเตอร์เสียง ',
           iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157534645311766558/2353-arrowrightglow.gif?ex=6518f5a5&is=6517a425&hm=ce55696f7ed85e2f7a97a3505eb39016fa9cd0c50be043efdf0cce06d7126b4c&',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
-      .setDescription('** Explore the Beat, Choose Your Sound Magic Below!**')
+      .setDescription('** สำรวจจังหวะ เลือกเวทย์มนตร์เสียงของคุณด้านล่าง!**')
 
     interaction.reply({ embeds: [embed], components: [buttons, buttons2] }).then(async Message => {
 
@@ -81,7 +81,7 @@ if(!filters?.includes(button?.customId)) return
           return interaction?.editReply({ embeds: [embed] }).catch(e => { })
         } else {
           queue?.filters?.add(filtre)
-          embed?.setDescription(`Magic : **{filter}**, Applied Status: **{status}**`.replace("{filter}", filtre).replace("{status}", "✅"))
+          embed?.setDescription(`ฟิลเตอร์ : **{filter}**, สถานะฟิลเตอร์: **{status}**`.replace("{filter}", filtre).replace("{status}", "✅"))
           return interaction?.editReply({ embeds: [embed] }).catch(e => { })
         }
       } else {
