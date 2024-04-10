@@ -35,7 +35,7 @@ module.exports = {
 
       if (vol < 1 || vol > maxVol) {
         return interaction.reply({
-          content: `Please type a number between \`1\` and \`${maxVol}\`.`,
+          content: `กรุณาพิมพ์ตัวเลขระหว่าง \`1\` and \`${maxVol}\`.`,
           ephemeral: true
         });
       }
@@ -46,7 +46,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setColor('#d291fe')
           .setAuthor({
-        name: 'Your Music! Your Rules!',
+        name: 'เพลงของคุณ! กฎของคุณ!',
         iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157528025739563088/5657-volume-icon.png?ex=6518ef7b&is=65179dfb&hm=1797c2830537a28b5c6a57564517cc509146d02383a69fb4239d7b5d55aceeed&', 
         url: 'https://discord.gg/FUEHs7RCqz'
     })
