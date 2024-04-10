@@ -77,7 +77,7 @@ if(!filters?.includes(button?.customId)) return
       if (filters?.includes(filtre?.toLowerCase())) {
         if (queue?.filters?.has(filtre)) {
           queue?.filters?.remove(filtre)
-          embed?.setDescription(`Magic : **{filter}**, Applied Status: **{status}**`.replace("{filter}", filtre).replace("{status}", "❌"))
+          embed?.setDescription(`ฟิลเตอร์ : **{filter}**, สถานะฟิลเตอร์: **{status}**`.replace("{filter}", filtre).replace("{status}", "❌"))
           return interaction?.editReply({ embeds: [embed] }).catch(e => { })
         } else {
           queue?.filters?.add(filtre)
