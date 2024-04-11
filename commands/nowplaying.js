@@ -18,11 +18,11 @@ module.exports = {
       embed.setColor(client.config.embedColor);
       embed.setThumbnail(track.thumbnail);
       embed.setTitle(track.name)
-      embed.setDescription(`> **Audio** \`%${queue.volume}\`
-> **Duration :** \`${track.formattedDuration}\`
+      embed.setDescription(`> **ระดับเสียง** \`%${queue.volume}\`
+> **ระยะเวลา :** \`${track.formattedDuration}\`
 > **URL :** **${track.url}**
-> **Loop Mode :** \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'All Queue' : 'This Song') : 'Off'}\`
-> **Filter**: \`${queue.filters.names.join(', ') || 'Off'}\`
+> **โหมดลูป :** \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'คิวทั้งหมด' : 'เพลงนี้') : 'Off'}\`
+> **ฟิลเตอร์เสียง**: \`${queue.filters.names.join(', ') || 'Off'}\`
 > **By :** <@${track.user.id}>`);
 
 
