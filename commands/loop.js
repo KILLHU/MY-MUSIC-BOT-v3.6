@@ -66,18 +66,18 @@ module.exports = {
           switch (button.customId) {
             case 'queue':
               const success = queue.setRepeatMode(2);
-              interaction?.editReply({ content: `✅ คิววนซ้ำ!!` }).catch(e => { })
+              interaction?.editReply({ content: `✅ เปิดใช้ลูปคิวเพลงแล้ว!!` }).catch(e => { })
               await button?.deferUpdate().catch(e => {})
               break
             case 'nowplaying':
               const success2 = queue.setRepeatMode(1);
-              interaction?.editReply({ content: `✅ เปิดใช้งานการวนซ้ำแล้ว!!` }).catch(e => { })
+              interaction?.editReply({ content: `✅ เปิดใช้ลูปเพลงปัจจุบันแล้ว!!` }).catch(e => { })
               await button?.deferUpdate().catch(e => {})
               break
             case 'close':
               if (queue.repeatMode === 0) {
                 await button?.deferUpdate().catch(e => {})
-                return interaction?.editReply({ content: '⚠️ ปิดการวนซ้ำแล้ว!!', ephemeral: true }).catch(e => { })
+                return interaction?.editReply({ content: '⚠️ ปิดการลูปแล้ว!!', ephemeral: true }).catch(e => { })
               }
               const success4 = queue.setRepeatMode(0);
               interaction?.editReply({ content: '▶️ กำลังวนลูปอยู่' }).catch(e => { })
@@ -89,7 +89,7 @@ module.exports = {
           button = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
               .setStyle(ButtonStyle.Secondary)
-              .setLabel("Timeout")
+              .setLabel("หมดเวลา")
               .setCustomId("timeend")
               .setDisabled(true))
 
