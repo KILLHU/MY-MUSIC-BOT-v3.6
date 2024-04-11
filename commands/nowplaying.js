@@ -23,7 +23,7 @@ module.exports = {
 > **URL :** **${track.url}**
 > **โหมดลูป :** \`${queue.repeatMode ? (queue.repeatMode === 2 ? 'คิวทั้งหมด' : 'เพลงนี้') : 'Off'}\`
 > **ฟิลเตอร์เสียง**: \`${queue.filters.names.join(', ') || 'Off'}\`
-> **By :** <@${track.user.id}>`);
+> **ขอโดย :** <@${track.user.id}>`);
 
 
       interaction.reply({ embeds: [embed] }).catch(e => { })
