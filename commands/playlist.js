@@ -125,8 +125,8 @@ module.exports = {
 
         const creatingAlbumEmbed = new EmbedBuilder()
           .setColor('#0099ff')
-          .setTitle('Creating Album')
-          .setDescription(`Hey <@${interaction.member.id}>, อัลบั้มของคุณกำลังถูกสร้างขึ้น! 🎸`)
+          .setTitle('กำลังสร้างอัลบั้ม')
+          .setDescription(`เฮ้ <@${interaction.member.id}>, อัลบั้มของคุณกำลังถูกสร้างขึ้น! 🎸`)
           .setTimestamp();
 
         // Replying with both content and embed
@@ -157,7 +157,7 @@ module.exports = {
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, สร้างอัลบั้มของคุณสำเร็จแล้ว! 🎉`)
+  .setDescription(`เฮ้ <@${interaction.member.id}>, สร้างอัลบั้มของคุณสำเร็จแล้ว! 🎉`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
@@ -189,7 +189,7 @@ await interaction.editReply({
 
        const deletingAlbumEmbed = new EmbedBuilder()
           .setColor('#0099ff')
-          .setTitle('Deleting Album')
+          .setTitle('กำลังลบอัลบั้ม')
           .setDescription(`Hey <@${interaction.member.id}>, อัลบั้มของคุณกำลังถูกลบ 🎸`)
           .setTimestamp();
 
@@ -216,7 +216,7 @@ await interaction.editReply({
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, อัลบั้มของคุณถูกลบเรียบร้อยแล้ว! ✨`)
+  .setDescription(`เฮ้ <@${interaction.member.id}>, อัลบั้มของคุณถูกลบเรียบร้อยแล้ว! ✨`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
@@ -257,7 +257,7 @@ await interaction.editReply({
           iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1213430944007061574/6943_Verified.gif',
           url: 'https://discord.gg/FUEHs7RCqz'
         })
-        .setDescription(`Hey <@${interaction.member.id}>, เพิ่มเพลงของคุณสำเร็จแล้ว! ✨`)
+        .setDescription(`เฮ้ <@${interaction.member.id}>, เพิ่มเพลงของคุณสำเร็จแล้ว! ✨`)
         .setFooter({ text: 'YouTube - RTX GAMING' })
         await interaction.reply({
   content: '',
@@ -298,8 +298,8 @@ await interaction.editReply({
 
          const deletingSongEmbed = new EmbedBuilder()
           .setColor('#0099ff')
-          .setTitle('Removing Song')
-          .setDescription(`Hey <@${interaction.member.id}>, your Song is being Removed!`)
+          .setTitle('กำลังถอดเพลง')
+          .setDescription(`Hey <@${interaction.member.id}>, เพลงของคุณกำลังถูกลบออก!`)
           .setTimestamp();
 
         // Replying with both content and embed
@@ -326,7 +326,7 @@ await interaction.editReply({
             iconURL: 'https://cdn.discordapp.com/attachments/1213421081226903552/1215554404527116288/7762-verified-blue.gif',
             url: 'https://discord.gg/FUEHs7RCqz'
           })
-  .setDescription(`Hey <@${interaction.member.id}>, เพลงของคุณถูกลบเรียบร้อยแล้ว! ✨`)
+  .setDescription(`เฮ้ <@${interaction.member.id}>, เพลงของคุณถูกลบเรียบร้อยแล้ว! ✨`)
   .setTimestamp();
 
 // Editing the reply with both content and embed
