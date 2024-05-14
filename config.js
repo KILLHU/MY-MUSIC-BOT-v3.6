@@ -3,7 +3,7 @@ module.exports = {
   ownerID: ["1004206704994566164", ""],
   botInvite: "",
   supportServer: "",
-  mongodbURL: "mongodb+srv://lgjamesco:g7IOS9PJytlwp7CP@kaikai.uy1amwh.mongodb.net/?retryWrites=true&w=majority",
+  mongodbURL: "",
   status: 'RTXX GG',
   commandsDir: './commands',
   language: "en",
