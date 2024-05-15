@@ -12,11 +12,11 @@ module.exports = {
       if (!queue || !queue.playing) {
         return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { });
       }
-      if (!queue.songs[0]) {
+      if (!queue.songs[1]) {
         return interaction.reply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => { });
       }
 
-      const trackl = queue.songs.map((track, i) => ({
+      const trackl = queue.songs.slice(1).map((track, i) => ({
         title: track.name,
         author: track.uploader.name,
         user: track.user,
@@ -49,7 +49,7 @@ module.exports = {
       let a = trackl.length / kaçtane;
 
       const generateEmbed = async (start) => {
-        let sayı = page === 1 ? 0 : page * kaçtane - kaçtane;
+        let sayı = page === 1 ? 1 : page * kaçtane - kaçtane + 1;
         const current = trackl.slice(start, start + kaçtane);
         if (!current || !current.length > 0) {
           return interaction.reply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => { });
