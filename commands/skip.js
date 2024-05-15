@@ -16,25 +16,22 @@ module.exports = {
     try {
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { });
+        return interaction.reply({ content: '⚠️ ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => console.error(e));
       }
 
       let number = interaction.options.getNumber('number');
       if (number) {
-        if (number > queue.songs.length) {
-          return interaction.reply({ content: '⚠️ เกินจำนวนเพลงในปัจจุบัน', ephemeral: true }).catch(e => { });
-        }
-        if (isNaN(number) || number < 1) {
-          return interaction.reply({ content: '⚠️ หมายเลขไม่ถูกต้อง', ephemeral: true }).catch(e => { });
+        if (number > queue.songs.length || number < 1) {
+          return interaction.reply({ content: '⚠️ หมายเลขไม่ถูกต้องหรือเกินจำนวนเพลงในปัจจุบัน', ephemeral: true }).catch(e => console.error(e));
         }
 
         try {
           let old = queue.songs[0];
-          await client.player.jump(interaction, number).then(song => {
-            return interaction.reply({ content: `⏯️ ข้ามเพลง : **${old.name}**` }).catch(e => { });
+          await client.player.jump(interaction, number - 1).then(song => {
+            return interaction.reply({ content: `⏯️ ข้ามเพลง : **${old.name}**` }).catch(e => console.error(e));
           });
         } catch (e) {
-          return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true }).catch(e => { });
+          return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true }).catch(e => console.error(e));
         }
       } else {
         try {
@@ -51,14 +48,14 @@ module.exports = {
             .setDescription(success ? ` **ข้ามไป** : **${old.name}**` : '❌ คิวว่าง!')
             .setTimestamp();
 
-          return interaction.reply({ embeds: [embed] }).catch(e => { });
+          return interaction.reply({ embeds: [embed] }).catch(e => console.error(e));
         } catch (e) {
-          return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true }).catch(e => { });
+          return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true }).catch(e => console.error(e));
         }
       }
     } catch (e) {
       console.error(e);
-      return interaction.reply({ content: '❌ เกิดข้อผิดพลาดบางอย่าง', ephemeral: true }).catch(e => { });
+      return interaction.reply({ content: '❌ เกิดข้อผิดพลาดบางอย่าง', ephemeral: true }).catch(e => console.error(e));
     }
   },
 };
