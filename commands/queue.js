@@ -10,13 +10,13 @@ module.exports = {
     try {
       const queue = client.player.getQueue(interaction.guild.id);
       if (!queue || !queue.playing) {
-        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => console.error(e));
+        return interaction.reply({ content: '⚠️ไม่พบเพลงที่กำลังเล่น', ephemeral: true }).catch(e => { });
       }
-      if (!queue.songs[1]) {
-        return interaction.reply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => console.error(e));
+      if (!queue.songs[0]) {
+        return interaction.reply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => { });
       }
 
-      const trackl = queue.songs.slice(1).map((track, i) => ({
+      const trackl = queue.songs.map((track, i) => ({
         title: track.name,
         author: track.uploader.name,
         user: track.user,
@@ -44,26 +44,28 @@ module.exports = {
         customId: forwardId
       });
 
-      let itemsPerPage = 8;
+      let kaçtane = 8;
       let page = 1;
-      let totalPages = Math.ceil(trackl.length / itemsPerPage);
+      let a = trackl.length / kaçtane;
 
       const generateEmbed = async (start) => {
-        let index = start + 1;
-        const current = trackl.slice(start, start + itemsPerPage);
-        if (current.length === 0) {
-          return interaction.editReply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => console.error(e));
+        let sayı = page === 1 ? 0 : page * kaçtane - kaçtane;
+        const current = trackl.slice(start, start + kaçtane);
+        if (!current || !current.length > 0) {
+          return interaction.reply({ content: '⚠️ คิวว่าง!!', ephemeral: true }).catch(e => { });
         }
         return new EmbedBuilder()
           .setTitle(`${interaction.guild.name} Queue`)
           .setThumbnail(interaction.guild.iconURL({ size: 2048, dynamic: true }))
           .setColor(client.config.embedColor)
           .setDescription(`▶️ ตอนนี้กำลังเล่น: \`${queue.songs[0].name}\`
-            ${current.map((data, i) => `\n\`${index + i}\` | [${data.title}](${data.url}) | (ขอเพลงโดย <@${data.user.id}>)`).join('')}`)
-          .setFooter({ text: `Page ${page}/${totalPages}` });
+            ${current.map(data =>
+            `\n\`${sayı++}\` | [${data.title}](${data.url}) | (ขอเพลงโดย <@${data.user.id}>)`
+          ).join('')}`)
+          .setFooter({ text: `Page ${page}/${Math.floor(a + 1)}` });
       }
 
-      const canFitOnOnePage = trackl.length <= itemsPerPage;
+      const canFitOnOnePage = trackl.length <= kaçtane;
 
       await interaction.reply({
         embeds: [await generateEmbed(0)],
@@ -79,30 +81,32 @@ module.exports = {
         collector.on("collect", async (button) => {
           if (button.customId === "close") {
             collector.stop();
-            return button.reply({ content: 'Command Cancelled', ephemeral: true }).catch(e => console.error(e));
+            return button.reply({ content: 'Command Cancelled', ephemeral: true }).catch(e => { });
           } else {
             if (button.customId === backId) {
               page--;
-              currentIndex -= itemsPerPage;
             }
             if (button.customId === forwardId) {
               page++;
-              currentIndex += itemsPerPage;
             }
+
+            button.customId === backId
+              ? (currentIndex -= kaçtane)
+              : (currentIndex += kaçtane);
 
             await interaction.editReply({
               embeds: [await generateEmbed(currentIndex)],
               components: [
                 new ActionRowBuilder({
                   components: [
-                    ...(currentIndex > 0 ? [backButton] : []),
+                    ...(currentIndex ? [backButton] : []),
                     deleteButton,
-                    ...(currentIndex + itemsPerPage < trackl.length ? [forwardButton] : []),
+                    ...(currentIndex + kaçtane < trackl.length ? [forwardButton] : []),
                   ],
                 }),
               ],
-            }).catch(e => console.error(e));
-            await button.deferUpdate().catch(e => console.error(e));
+            }).catch(e => { });
+            await button.deferUpdate().catch(e => { });
           }
         });
 
@@ -129,9 +133,9 @@ module.exports = {
             .setTitle('Command Timeout')
             .setColor(`#ecfc03`)
             .setDescription('▶️ ดำเนินการคำสั่งคิวอีกครั้ง!!');
-          return interaction.editReply({ embeds: [embed], components: [disabledButtons] }).catch(e => console.error(e));
+          return interaction.editReply({ embeds: [embed], components: [disabledButtons] }).catch(e => { });
         });
-      }).catch(e => console.error(e));
+      }).catch(e => { });
     } catch (e) {
       console.error(e);
     }
