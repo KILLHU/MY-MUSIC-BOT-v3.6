@@ -21,7 +21,7 @@ module.exports = {
   permissions: "0x0000000000000800",
   options: [{
     name: "number",
-    description: "จำนวนเพลงที่คุณต้องการข้าม",
+    description: "ต้องการข้ามไปเพลงที่เท่าไหร่",
     type: ApplicationCommandOptionType.Number,
     required: false
   }],
@@ -42,7 +42,7 @@ module.exports = {
         try {
         let old = queue.songs[0];
         await client.player.jump(interaction, number).then(song => {
-          return interaction.reply({ content: `⏯️ ข้ามไป : **${old.name}**` }).catch(e => { })
+          return interaction.reply({ content: `⏯️ ข้ามเพลง : **${old.name}**` }).catch(e => { })
         })
       } catch(e){
         return interaction.reply({ content: '❌ คิวว่าง!!', ephemeral: true }).catch(e => { })
