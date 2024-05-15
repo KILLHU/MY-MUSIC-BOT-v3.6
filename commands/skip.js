@@ -60,11 +60,11 @@ try {
   const embed = new EmbedBuilder()
     .setColor('#3498db')
     .setAuthor({
-      name: 'ข้ามเพลงไป',
+      name: 'ข้ามเพลง',
       iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157269773118357604/giphy.gif?ex=6517fef6&is=6516ad76&hm=f106480f7d017a07f75d543cf545bbea01e9cf53ebd42020bd3b90a14004398e&',
       url: 'https://discord.gg/FUEHs7RCqz'
     })
-    .setDescription(success ? ` **ข้ามไป** : **${old.name}**` : '❌ คิวว่าง!')
+    .setDescription(success ? ` **ข้ามเพลง** : **${old.name}**` : '❌ คิวว่าง!')
     .setTimestamp();
 
   return interaction.reply({ embeds: [embed] });
