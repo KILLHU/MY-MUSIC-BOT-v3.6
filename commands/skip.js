@@ -58,6 +58,7 @@ module.exports = {
       }
     } catch (e) {
       console.error(e);
+      return interaction.reply({ content: '❌ เกิดข้อผิดพลาดบางอย่าง', ephemeral: true }).catch(e => { });
     }
   },
 };
